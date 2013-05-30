@@ -36,9 +36,9 @@ module Exco
       'L_BILLINGAGREEMENTDESCRIPTION0' => description
     )
 
-    response = process(request('POST', data: payload))
+    response = process(request('POST', payload))
 
-    return checkout_url(token: response['TOKEN'])
+    return checkout_url(response['TOKEN'])
   end
 
   def self.get_express_checkout_details(token)
@@ -47,7 +47,7 @@ module Exco
       'TOKEN' => token
     )
 
-    process(request('POST', data: payload))
+    process(request('POST', payload))
   end
 
   def self.do_express_checkout(
@@ -63,7 +63,7 @@ module Exco
       'AMT' => amount
     )
 
-    process(request('POST', data: payload))
+    process(request('POST', payload))
   end
 
   def self.create_recurring_payments_profile(
@@ -86,7 +86,7 @@ module Exco
       'DESC' => description
     )
 
-    process(request('POST', data: payload))
+    process(request('POST', payload))
   end
 
   def self.cancel_recurring_payments_profile(profile_id)
@@ -97,11 +97,11 @@ module Exco
       'ACTION' => 'Cancel'
     )
 
-    process(request('POST', data: payload))
+    process(request('POST', payload))
   end
 
 private
-  def self.checkout_url(token: nil)
+  def self.checkout_url(token)
     '%s/cgi-bin/webscr?cmd=_express-checkout&token=%s' % [WEB_URL, token]
   end
 
@@ -113,7 +113,7 @@ private
     end
   end
 
-  def self.request(method, data: nil)
+  def self.request(method, data)
     out, err, res = Open3.capture3('curl -X%s -d @- %s' % [method, API_URL],
                                    stdin_data: URI.encode_www_form(data))
 
