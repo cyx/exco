@@ -1,0 +1,4 @@
+env.sh
+.gems
+.DS_Store
+test/*.dat
