@@ -1,0 +1,17 @@
+exco
+====
+
+Paypal Express Checkout
+
+Description
+-----------
+
+Paypal Express Checkout
+
+## Installation
+
+As usual, you can install it using rubygems.
+
+```
+$ gem install exco
+```
