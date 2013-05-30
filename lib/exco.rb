@@ -9,10 +9,10 @@ module Exco
   WEB_URL = 'https://www.%s' % ENV.fetch('EXCO_HOST')
 
   CREDENTIALS = {
-    'USER' => ENV.fetch('EXCO_USERNAME'),
-    'PWD' => ENV.fetch('EXCO_PASSWORD'),
+    'USER'      => ENV.fetch('EXCO_USERNAME'),
+    'PWD'       => ENV.fetch('EXCO_PASSWORD'),
     'SIGNATURE' => ENV.fetch('EXCO_SIGNATURE'),
-    'VERSION' => ENV['EXCO_VERSION'] || '86.0'
+    'VERSION'   => ENV.fetch('EXCO_VERSION', '86.0')
   }
 
   def self.set_express_checkout(
